@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to Degree Converter</title>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url("123.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+
+            color: white;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid white;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: cyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Hexadecimal to Degree Converter</h2>
+        <label>Hexadecimal:</label>
+        <input type="text" id="hexInput" oninput="convertValues()">
+
+        <label>Decimal:</label>
+        <input type="text" id="decimalOutput" readonly>
+
+        <label>Radian:</label>
+        <input type="text" id="radianOutput" readonly>
+
+        <label>Degree:</label>
+        <input type="text" id="degreeOutput" readonly>
+    </div>
+
+    <script>
+        function convertValues() {
+            let hexValue = document.getElementById('hexInput').value;
+            if (hexValue) {
+                let decimalValue = parseInt(hexValue, 16);
+                if (!isNaN(decimalValue)) {
+                    document.getElementById('decimalOutput').value = decimalValue;
+                    let radianValue = decimalValue / 1048576;
+                    document.getElementById('radianOutput').value = radianValue;
+                    let degreeValue = radianValue * (180 / Math.PI);
+                    document.getElementById('degreeOutput').value = degreeValue.toFixed(6);
+                } else {
+                    document.getElementById('decimalOutput').value = '';
+                    document.getElementById('radianOutput').value = '';
+                    document.getElementById('degreeOutput').value = '';
+                }
+            } else {
+                document.getElementById('decimalOutput').value = '';
+                document.getElementById('radianOutput').value = '';
+                document.getElementById('degreeOutput').value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>
